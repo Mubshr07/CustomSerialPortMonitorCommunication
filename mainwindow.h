@@ -104,22 +104,9 @@ private:
     QByteArray serialBytesTxInsulationResistanceTest = QByteArray::fromHex("EA920300000000000000000000BB").toUpper(); //  [2]=PacketID, [3]=ChID, [4]=Ch.Status
     QByteArray serialBytesTxLaunchControlTest = QByteArray::fromHex("EA920300000000000000000000BB").toUpper(); //  [2]=PacketID, [3]=Simulation.Time,
 
-
-    void sendHandShakePacket();
-
-
-    void sendSelfTestPacket(int channel, double data);
-    void sendResistanceTestPacket();
-    void sendPolarityTestPacket(int channel, double data);
-    void sendInsulationTestPacket(int channel, double data);
-
-    void sendLaunchTestPacket( double time);
     float randomNumberGeneratorFloat(double min, double max);
 
 
-
-    float toleranceSelfTestPowerSupply[2] = {27.0, 29.0};
-    float toleranceSolenoidResistance[2] = {4.3, 5.7};
 
 
 
