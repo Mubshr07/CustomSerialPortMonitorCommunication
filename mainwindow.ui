@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>452</width>
-    <height>388</height>
+    <width>727</width>
+    <height>426</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -185,8 +185,12 @@
           <height>40</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;
+</string>
+        </property>
         <property name="text">
-         <string>Close</string>
+         <string>Exit</string>
         </property>
        </widget>
       </item>

@@ -59,10 +59,12 @@ void MainWindow::on_openButton_clicked()
         if(m_serialPort.open(QIODevice::ReadWrite)){
             m_serialPort.flush();
             m_serialPort.clear();
-            ui->openButton->setText(tr("OPened"));
+            ui->openButton->setText(tr("listening\nMode"));
+            ui->openButton->setStyleSheet("background-color:lime; color: black;");
             qDebug()<<" Serial Port opend: name: "<<m_serialPort.portName();
         } else {
             ui->openButton->setText(tr("Error"));
+            ui->openButton->setStyleSheet("background-color:red; color: black;");
             qDebug()<<"+++++++++ Serial Port Error: name: "<<m_serialPort.portName();
         }
         m_serialPort.flush();
@@ -79,7 +81,8 @@ void MainWindow::on_openButton_clicked()
 
         ui->PortBox->setEnabled(true);
         ui->BaudBox->setEnabled(true);
-        ui->openButton->setText(tr("Open"));
+        ui->openButton->setText(tr("Stopped"));
+        ui->openButton->setStyleSheet("background-color:transparent; color: black; border:0px solid black; border-left:2px solid black; border-bottom:2px solid black;");
     }
 }
 
