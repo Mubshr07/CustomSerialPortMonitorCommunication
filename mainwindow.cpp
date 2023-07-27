@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    GlobalVars::initEveryThing();
 
 
     foreach(const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
@@ -177,4 +178,14 @@ float MainWindow::randomNumberGeneratorFloat(double min, double max)
 
 }
 
+
+
+void MainWindow::on_pbSettings_clicked()
+{
+    portSettingObj = new PortSettings(this);
+
+
+    portSettingObj->show();
+
+}
 

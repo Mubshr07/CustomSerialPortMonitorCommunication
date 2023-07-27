@@ -42,8 +42,12 @@
 #include <time.h>
 #include <iostream>
 
+
 #include <bits/stdc++.h>
 #include <qbitarray.h>
+
+
+#include "PortSettings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -68,14 +72,17 @@ private slots:
     void on_pbClose_clicked();
     void on_openButton_clicked();
 
+    void on_pbSettings_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timerSingleShot;
     QSerialPort m_serialPort;
 
-    /* 定义两个可变数组存放绘图的坐标数据 */
     QVector<double> m_xs;
     QVector<double> m_ys;
+
+    PortSettings *portSettingObj;
 
     int m_xLength;
     bool toggleOpenSerial = false;

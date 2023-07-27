@@ -14,11 +14,13 @@ TEMPLATE = app
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Classes/GlobalVars.cpp \
     PortSettings.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    Classes/GlobalVars.h \
     PortSettings.h \
     mainwindow.h
 

@@ -2,6 +2,7 @@
 #define PORTSETTINGS_H
 
 #include <QMainWindow>
+#include "Classes/GlobalVars.h"
 
 namespace Ui {
 class PortSettings;
@@ -15,8 +16,27 @@ public:
     explicit PortSettings(QWidget *parent = nullptr);
     ~PortSettings();
 
+signals:
+    void txNewSerialPortConfig(QString portName);
+
+
+private slots:
+    void onTimerSingleShotElapsed();
+
+
+
+    void on_pbCancel_clicked();
+
+    void on_pbConfiguration_clicked();
+
 private:
     Ui::PortSettings *ui;
+
+
+    QTimer *timerSingleShot;
+
+
+
 };
 
 #endif // PORTSETTINGS_H
