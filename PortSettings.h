@@ -22,12 +22,9 @@ signals:
 
 private slots:
     void onTimerSingleShotElapsed();
-
-
-
     void on_pbCancel_clicked();
-
     void on_pbConfiguration_clicked();
+
 
 private:
     Ui::PortSettings *ui;
@@ -35,6 +32,7 @@ private:
 
     QTimer *timerSingleShot;
 
+    void processSettingsLine(QString line);
 
 
 };

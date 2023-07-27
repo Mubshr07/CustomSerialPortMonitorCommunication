@@ -50,9 +50,52 @@ void PortSettings::onTimerSingleShotElapsed()
 
     qDebug()<<"--------------------------------------";
 
+    if(QFile::exists(GlobalVars::filePathCOMportSettings)){
+        QFile file(GlobalVars::filePathCOMportSettings);
+        if(file.open(QIODevice::ReadOnly)){
+            QTextStream in(&file);
+            while (!in.atEnd())
+            {
+                QString line = in.readLine();
+                //qDebug()<<" file LIne:: "<<line;
+                processSettingsLine(line);
+            }
+            file.close();
+
+        } else {
+            qDebug()<<" Error in Opening SettingsFile: "<<GlobalVars::filePathCOMportSettings;
+        }
+    }
+    else {
+        qDebug()<<" COM Port Setting File did not exist ";
+    }
+
 
 }
 
+
+void PortSettings::processSettingsLine(QString line)
+{
+    if(line.length() < 3) return;
+    qDebug()<<" Serial COM Port Processing Line: "<<line;
+    int index = line.indexOf(",");
+    //qDebug()<<" ID Index : "<<index;
+    if(index < 0) return;
+    bool okBool = false;
+    int parameterID = line.left(index).toInt(&okBool);
+    line.remove(0, index+1);
+
+    index = line.indexOf(",");
+    //qDebug()<<" Value Index : "<<index<<" line: "<<line;
+    if(index < 0) return;
+    okBool = false;
+    QString parameterValue = line.left(index);
+
+    qDebug()<<" paraID: "<<parameterID<<" Serial Port Name Value: "<<parameterValue;
+
+    //rxInitializeSerialPort(parameterValue);
+
+}
 
 
 
