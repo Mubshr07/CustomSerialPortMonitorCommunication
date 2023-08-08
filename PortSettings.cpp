@@ -77,7 +77,7 @@ void PortSettings::onTimerSingleShotElapsed()
 void PortSettings::processSettingsLine(QString line)
 {
     if(line.length() < 3) return;
-    qDebug()<<" Serial COM Port Processing Line: "<<line;
+    //qDebug()<<" Serial COM Port Processing Line: "<<line;
     int index = line.indexOf(",");
     //qDebug()<<" ID Index : "<<index;
     if(index < 0) return;
@@ -91,8 +91,44 @@ void PortSettings::processSettingsLine(QString line)
     okBool = false;
     QString parameterValue = line.left(index);
 
-    qDebug()<<" paraID: "<<parameterID<<" Serial Port Name Value: "<<parameterValue;
+    //qDebug()<<" paraID: "<<parameterID<<" Serial Port Name Value: "<<parameterValue;
 
+
+    int findIndex = -1;
+    switch (parameterID) {
+    case 1:{
+        findIndex = ui->cmbCOMportName->findText(parameterValue);
+        if(findIndex>-1) ui->cmbCOMportName->setCurrentIndex(findIndex);
+        break;
+    }
+    case 2:{
+        findIndex = ui->cmbBaudRate->findText(parameterValue);
+        if(findIndex>-1) ui->cmbBaudRate->setCurrentIndex(findIndex);
+        break;
+    }
+    case 3:{
+        findIndex = ui->cmbDataBits->findText(parameterValue);
+        if(findIndex>-1) ui->cmbDataBits->setCurrentIndex(findIndex);
+        break;
+    }
+    case 4:{
+        findIndex = ui->cmbParity->findText(parameterValue);
+        if(findIndex>-1) ui->cmbParity->setCurrentIndex(findIndex);
+        break;
+    }
+    case 5:{
+        findIndex = ui->cmbStopBits->findText(parameterValue);
+        if(findIndex>-1) ui->cmbStopBits->setCurrentIndex(findIndex);
+        break;
+    }
+    case 6:{
+        findIndex = ui->cmbParityErrorChar->findText(parameterValue);
+        if(findIndex>-1) ui->cmbParityErrorChar->setCurrentIndex(findIndex);
+        break;
+    }
+    default:
+        break;
+    }
     //rxInitializeSerialPort(parameterValue);
 
 }
@@ -109,6 +145,13 @@ void PortSettings::on_pbCancel_clicked()
 void PortSettings::on_pbConfiguration_clicked()
 {
     QString fileData = QString("1,"+ui->cmbCOMportName->currentText()+",\n ");
+    fileData += QString("2,"+ui->cmbBaudRate->currentText()+",\n ");
+    fileData += QString("3,"+ui->cmbDataBits->currentText()+",\n ");
+    fileData += QString("4,"+ui->cmbParity->currentText()+",\n ");
+    fileData += QString("5,"+ui->cmbStopBits->currentText()+",\n ");
+    fileData += QString("6,"+ui->cmbParityErrorChar->currentText()+",\n ");
+
+
     QFile file(GlobalVars::filePathCOMportSettings);
     if(file.open(QIODevice::WriteOnly)){
         qDebug()<<" Settings File Data:: \n"<<fileData;
