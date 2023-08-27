@@ -62,6 +62,8 @@ public:
     ~MainWindow();
 
 public slots:
+    void rxNewSerialPortConfig(QString portName);
+
     void onSerialReadyData();
     void onTimerSingleShotElapsed();
 

@@ -154,7 +154,7 @@ void PortSettings::on_pbConfiguration_clicked()
 
     QFile file(GlobalVars::filePathCOMportSettings);
     if(file.open(QIODevice::WriteOnly)){
-        qDebug()<<" Settings File Data:: \n"<<fileData;
+        //qDebug()<<" Settings File Data:: \n"<<fileData;
         file.write(fileData.toUtf8(), fileData.toUtf8().length());
         file.close();
     } else {

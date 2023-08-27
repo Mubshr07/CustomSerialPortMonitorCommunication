@@ -183,9 +183,28 @@ float MainWindow::randomNumberGeneratorFloat(double min, double max)
 void MainWindow::on_pbSettings_clicked()
 {
     portSettingObj = new PortSettings(this);
-
+    connect(portSettingObj, SIGNAL(txNewSerialPortConfig(QString)), this, SLOT(rxNewSerialPortConfig(QString)));
 
     portSettingObj->show();
 
 }
+void MainWindow::rxNewSerialPortConfig(QString portName)
+{
+    qDebug()<<"rxNewSerialPortConfig :: Selected :"<<portName;
+    if(toggleOpenSerial){
+        on_openButton_clicked();
+        ui->PortBox->setCurrentText(portName);
+        on_openButton_clicked();
+    }
+    else {
+        ui->PortBox->setCurrentText(portName);
+        on_openButton_clicked();
+    }
+
+
+}
+
+
+
+
 
