@@ -43,7 +43,6 @@
 #include <iostream>
 
 
-#include <bits/stdc++.h>
 #include <qbitarray.h>
 
 
